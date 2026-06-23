@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+```
+<h1>Our Products</h1>
+<input
+    type="text"
+    id="searchInput"
+    placeholder="Search Products..."
+    onkeyup="searchProducts()">
+
+<nav>
+    <a href="cart.html">Cart</a>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<div class="products">
+
+    <div class="card product">
+    <img src="images/big-donut.jpg">
+        <h4>🍩 Big Donut</h4>
+
+<p class="rating">⭐⭐⭐⭐⭐ (4.9)</p>
+<p>50 TL</p>
+        <button onclick="orderProduct('Big Donut', 50)">
+    Order Now
+</button>
+ 
+    </div>
+
+    <div class="card product">
+        <img src="images/small-donut.jpg">
+        <h4>🍩 Small Donut</h4>
+
+<p class="rating">⭐⭐⭐⭐⭐ (4.9)</p>
+<p>45 TL</p>
+        <button onclick="orderProduct('Small Donut', 45)">
+         Order Now
+        </button>
+
+    </div>
+
+    <div class="card product">
+        <img src="images/big-cinnamon.jpg">
+        <h4>🥮 Big Cinnamon</h4>
+
+<p class="rating">⭐⭐⭐⭐⭐ (4.9)</p>
+<p>60 TL</p>
+        <button onclick="orderProduct('Big Cinnamon', 60)">
+    Order Now
+</button>
+
+    </div>
+
+    <div class="card product">
+        <img src="images/small-cinnamon.jpg">
+       <h4>🥮 Small Cinnamon</h4>
+
+<p class="rating">⭐⭐⭐⭐⭐ (4.9)</p>
+<p>55 TL</p>
+        <button onclick="orderProduct('Small Cinnamon', 55)">
+    Order Now
+</button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

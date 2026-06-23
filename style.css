@@ -1,0 +1,107 @@
+body{
+background-color: #fff5f5;
+text-align: center;
+font-family: Arial, sans-serif;
+}
+
+h1{
+color: brown;
+font-size: 40px;
+}
+
+h2{
+color: darkred;
+font-size: 30px;
+}
+
+h3{
+font-size: 25px;
+}
+
+nav{
+background-color: white;
+padding: 15px;
+}
+
+a{
+text-decoration: none;
+color: brown;
+font-size: 20px;
+margin: 15px;
+}
+
+a:hover{
+color: darkred;
+}
+
+.hero img{
+width: 100%;
+max-width: 1200px;
+height: 350px;
+object-fit: cover;
+border-radius: 20px;
+}
+
+.products{
+display: flex;
+justify-content: center;
+gap: 30px;
+flex-wrap: wrap;
+}
+
+.card{
+border: 2px solid brown;
+width: 280px;
+padding: 20px;
+border-radius: 15px;
+background-color: white;
+transition: 0.3s;
+}
+
+.card:hover{
+transform: scale(1.05);
+}
+
+.card img{
+width: 200px;
+height: 150px;
+object-fit: cover;
+border-radius: 10px;
+}
+
+button{
+background: brown;
+color: white;
+border: none;
+padding: 12px 25px;
+border-radius: 10px;
+cursor: pointer;
+font-size: 16px;
+}
+
+button:hover{
+background: darkred;
+}
+
+input,
+textarea{
+width: 300px;
+padding: 10px;
+border-radius: 8px;
+border: 1px solid gray;
+}
+
+textarea{
+height: 100px;
+}
+
+footer{
+background-color: brown;
+color: white;
+margin-top: 50px;
+padding: 20px;
+}
+.rating{
+    color: gold;
+    font-size: 20px;
+}
