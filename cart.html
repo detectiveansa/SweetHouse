@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
@@ -9,78 +8,127 @@
 
 <body>
 
-```
 <h1>🛒 Shopping Cart</h1>
 
 <div id="cart-items"></div>
 
 <br>
 
-<button onclick="clearCart()">Clear Cart</button>
+<button onclick="clearCart()">🗑 Clear Cart</button>
 
-<button onclick="checkout()">Checkout</button>
+<a href="checkout.html">
+    <button>✅ Checkout</button>
+</a>
 
 <script>
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    let container = document.getElementById("cart-items");
+let container = document.getElementById("cart-items");
 
-    let total = 0;
+let grandTotal = 0;
 
-    if (cart.length === 0) {
+if(cart.length === 0){
 
-        container.innerHTML = "<h2>Your cart is empty</h2>";
+    container.innerHTML = "<h2>Your cart is empty.</h2>";
 
-    } else {
+}
+else{
 
-        cart.forEach((item, index) => {
+    cart.forEach((item,index)=>{
 
-            container.innerHTML += `
-                <p>
-                    ${item.name} - ${item.price} TL
-                    <button onclick="deleteItem(${index})">
-                        Delete
-                    </button>
-                </p>
-            `;
+        let itemTotal = item.total || (item.price * item.quantity);
 
-            total += item.price;
-
-        });
+        grandTotal += itemTotal;
 
         container.innerHTML += `
-            <h2>Total: ${total} TL</h2>
+
+        <div class="card">
+
+            <h2>${item.name}</h2>
+
+            <p><strong>Flavor:</strong> ${item.flavor}</p>
+
+            <p>
+
+                <strong>Quantity:</strong>
+
+                <button class="quantity-btn"
+                onclick="changeQuantity(${index},-1)">➖</button>
+
+                ${item.quantity}
+
+                <button class="quantity-btn"
+                onclick="changeQuantity(${index},1)">➕</button>
+
+            </p>
+
+            <p><strong>Price:</strong> ${item.price} TL</p>
+
+            <p><strong>Total:</strong> ${itemTotal} TL</p>
+
+            <button onclick="deleteItem(${index})">
+                🗑 Remove
+            </button>
+
+        </div>
+
+        <br>
+
         `;
+
+    });
+
+    container.innerHTML += `
+
+        <hr>
+
+        <h2>Grand Total: ${grandTotal} TL</h2>
+
+    `;
+
+}
+
+function changeQuantity(index,change){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart[index].quantity += change;
+
+    if(cart[index].quantity < 1){
+
+        cart[index].quantity = 1;
+
     }
 
-    function clearCart() {
+    cart[index].total =
+        cart[index].price * cart[index].quantity;
 
-        localStorage.removeItem("cart");
+    localStorage.setItem("cart",JSON.stringify(cart));
 
-        location.reload();
-    }
+    location.reload();
 
-    function deleteItem(index) {
+}
 
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+function deleteItem(index){
 
-        cart.splice(index, 1);
+    cart.splice(index,1);
 
-        localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart",JSON.stringify(cart));
 
-        location.reload();
-    }
+    location.reload();
 
-    function checkout() {
+}
 
-        localStorage.removeItem("cart");
+function clearCart(){
 
-        window.location.href = "success.html";
-    }
+    localStorage.removeItem("cart");
+
+    location.reload();
+
+}
 
 </script>
-```
 
 </body>
 

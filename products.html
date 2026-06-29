@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
@@ -9,74 +8,144 @@
 
 <body>
 
-```
-<h1>Our Products</h1>
-<input
-    type="text"
-    id="searchInput"
-    placeholder="Search Products..."
-    onkeyup="searchProducts()">
+    <h1>Our Products</h1>
 
-<nav>
-    <a href="cart.html">Cart</a>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="contact.html">Contact</a>
-</nav>
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search Products..."
+        onkeyup="searchProducts()">
 
-<div class="products">
+    <br><br>
 
-    <div class="card product">
-    <img src="images/big-donut.jpg">
-        <h4>🍩 Big Donut</h4>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+    </nav>
 
-<p class="rating">⭐⭐⭐⭐⭐ (4.9)</p>
-<p>50 TL</p>
-        <button onclick="orderProduct('Big Donut', 50)">
-    Order Now
-</button>
- 
+    <br>
+
+    <div class="products">
+
+        <!-- Big Donut -->
+        <div class="card product">
+
+            <a href="big-donut.html">
+                <img src="images/big-donut.jpg" alt="Big Donut">
+            </a>
+
+            <a href="big-donut.html">
+                <h4>🍩 Big Donut</h4>
+            </a>
+
+            <p>50 TL</p>
+
+            <a href="big-donut.html">
+                <button>Order Now</button>
+            </a>
+
+        </div>
+
+        <!-- Small Donut -->
+        <div class="card product">
+
+            <a href="small-donut.html">
+                <img src="images/small-donut.jpg" alt="Small Donut">
+            </a>
+
+            <a href="small-donut.html">
+                <h4>🍩 Small Donut</h4>
+            </a>
+
+            <p>45 TL</p>
+
+            <a href="small-donut.html">
+                <button>Order Now</button>
+            </a>
+
+        </div>
+
+        <!-- Big Cinnamon -->
+        <div class="card product">
+
+            <a href="big-cinnamon.html">
+                <img src="images/big-cinnamon.jpg" alt="Big Cinnamon">
+            </a>
+
+            <a href="big-cinnamon.html">
+                <h4>🥮 Big Cinnamon</h4>
+            </a>
+
+            <p>60 TL</p>
+
+            <a href="big-cinnamon.html">
+                <button>Order Now</button>
+            </a>
+
+        </div>
+
+        <!-- Small Cinnamon -->
+        <div class="card product">
+
+            <a href="small-cinnamon.html">
+                <img src="images/small-cinnamon.jpg" alt="Small Cinnamon">
+            </a>
+
+            <a href="small-cinnamon.html">
+                <h4>🥮 Small Cinnamon</h4>
+            </a>
+
+            <p>55 TL</p>
+
+            <a href="small-cinnamon.html">
+                <button>Order Now</button>
+            </a>
+
+        </div>
+
     </div>
 
-    <div class="card product">
-        <img src="images/small-donut.jpg">
-        <h4>🍩 Small Donut</h4>
+    <footer>
 
-<p class="rating">⭐⭐⭐⭐⭐ (4.9)</p>
-<p>45 TL</p>
-        <button onclick="orderProduct('Small Donut', 45)">
-         Order Now
-        </button>
+        <hr>
 
-    </div>
+        <h3>🍩 Sweet House</h3>
 
-    <div class="card product">
-        <img src="images/big-cinnamon.jpg">
-        <h4>🥮 Big Cinnamon</h4>
+        <p>Fresh Donuts & Cinnamon Rolls Made with Love ❤️</p>
 
-<p class="rating">⭐⭐⭐⭐⭐ (4.9)</p>
-<p>60 TL</p>
-        <button onclick="orderProduct('Big Cinnamon', 60)">
-    Order Now
-</button>
+<p>
+    📞 Phone:
+    <a href="tel:+905069294075">
+        +90 506 929 4075
+    </a>
+</p>
 
-    </div>
 
-    <div class="card product">
-        <img src="images/small-cinnamon.jpg">
-       <h4>🥮 Small Cinnamon</h4>
+        <p>📍 Istanbul, Turkey</p>
 
-<p class="rating">⭐⭐⭐⭐⭐ (4.9)</p>
-<p>55 TL</p>
-        <button onclick="orderProduct('Small Cinnamon', 55)">
-    Order Now
-</button>
+       <p>
 
-    </div>
+    <a href="https://www.instagram.com/1sweet_roll/" target="_blank">
+        <i class="fab fa-instagram"></i> Instagram
+    </a>
 
-</div>
+    |
 
-<script src="script.js"></script>
+    <a href="https://chat.whatsapp.com/KsQnQEdY2CLCIJ7m2vyYwK?s=cl&p=a&ilr=4" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp Group
+    </a>
+
+</p>
+
+        <p>© 2026 Sweet House. All Rights Reserved.</p>
+
+    </footer>
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
