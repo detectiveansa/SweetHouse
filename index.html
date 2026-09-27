@@ -1,133 +1,279 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sweet House</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- ================= LANGUAGE SCREEN ================= -->
+
+<div id="language-screen">
+
+    <div class="language-box">
+
+        <h1>🍩 Sweet House</h1>
+
+        <h2>Choose Your Language</h2>
+
+        <button onclick="selectLanguage('en')">
+            🇬🇧 English
+        </button>
+
+        <button onclick="selectLanguage('ar')">
+            🇸🇦 العربية
+        </button>
+
+        <button onclick="selectLanguage('tr')">
+            🇹🇷 Türkçe
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MAIN WEBSITE ================= -->
+
 <h1>🍩 Sweet House</h1>
 
 <nav>
-    <a href="cart.html" id="cart-count">Cart (0)</a>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="contact.html">Contact</a>
-    <a href="about.html">About</a>
+
+    <a href="cart.html" id="cart-count">
+        Cart (0)
+    </a>
+
+    <a href="index.html" data-i18n="home">
+        Home
+    </a>
+
+    <a href="products.html" data-i18n="products">
+        Products
+    </a>
+
+    <a href="contact.html" data-i18n="contact">
+        Contact
+    </a>
+
+    <a href="about.html" data-i18n="about">
+        About
+    </a>
+
 </nav>
 
 <br>
 
+
+<!-- ================= HERO ================= -->
+
 <div class="hero">
-    <img src="images/banner.jpg" alt="Sweet House">
+
+    <img
+        src="images/banner.jpg"
+        alt="Sweet House"
+    >
+
 </div>
 
-<h2>Fresh Donuts & Cinnamon Rolls</h2>
 
-<p>Made daily with love ❤️</p>
+<h2 data-i18n="freshProducts">
+    Fresh Donuts & Cinnamon Rolls
+</h2>
 
-<h3>Our Best Sellers</h3>
+<p data-i18n="madeWithLove">
+    Made daily with love ❤️
+</p>
+
+<h3 data-i18n="bestSellers">
+    Our Best Sellers
+</h3>
+
+
+<!-- ================= PRODUCTS ================= -->
 
 <div class="products">
 
+
     <!-- Big Donut -->
+
     <div class="card product">
 
-        <img src="images/big-donut.jpg" alt="Big Donut">
+        <img
+            src="images/big-donut.jpg"
+            alt="Big Donut"
+        >
 
-        <h4>🍩 Big Donut</h4>
+        <h4>
+            🍩 Big Donut
+        </h4>
 
-        <p>55 TL</p>
+        <p>
+            55 TL
+        </p>
 
         <a href="big-donut.html">
-            <button>Order Now</button>
+
+            <button data-i18n="orderNow">
+                Order Now
+            </button>
+
         </a>
 
     </div>
+
 
     <!-- Small Donut -->
+
     <div class="card product">
 
-        <img src="images/small-donut.jpg" alt="Small Donut">
+        <img
+            src="images/small-donut.jpg"
+            alt="Small Donut"
+        >
 
-        <h4>🍩 Small Donut</h4>
+        <h4>
+            🍩 Small Donut
+        </h4>
 
-        <p>50 TL</p>
+        <p>
+            50 TL
+        </p>
 
         <a href="small-donut.html">
-            <button>Order Now</button>
+
+            <button data-i18n="orderNow">
+                Order Now
+            </button>
+
         </a>
 
     </div>
+
 
     <!-- Big Cinnamon -->
+
     <div class="card product">
 
-        <img src="images/big-cinnamon.jpg" alt="Big Cinnamon">
+        <img
+            src="images/big-cinnamon.jpg"
+            alt="Big Cinnamon"
+        >
 
-        <h4>🥮 Big Cinnamon</h4>
+        <h4>
+            🥮 Big Cinnamon
+        </h4>
 
-        <p>65 TL</p>
+        <p>
+            65 TL
+        </p>
 
         <a href="big-cinnamon.html">
-            <button>Order Now</button>
+
+            <button data-i18n="orderNow">
+                Order Now
+            </button>
+
         </a>
 
     </div>
+
 
     <!-- Small Cinnamon -->
+
     <div class="card product">
 
-        <img src="images/small-cinnamon.jpg" alt="Small Cinnamon">
+        <img
+            src="images/small-cinnamon.jpg"
+            alt="Small Cinnamon"
+        >
 
-        <h4>🥮 Small Cinnamon</h4>
+        <h4>
+            🥮 Small Cinnamon
+        </h4>
 
-        <p>60 TL</p>
+        <p>
+            60 TL
+        </p>
 
         <a href="small-cinnamon.html">
-            <button>Order Now</button>
+
+            <button data-i18n="orderNow">
+                Order Now
+            </button>
+
         </a>
 
     </div>
 
+
 </div>
+
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
     <hr>
 
-    <h3>🍩 Sweet House</h3>
+    <h3>
+        🍩 Sweet House
+    </h3>
 
-    <p>Fresh Donuts & Cinnamon Rolls Made with Love ❤️</p>
-
-    <p>
-        📞 Phone:
-        <a href="tel:+905078312664">
-            +90 507 831 2664 
-        </a>
+    <p data-i18n="footerText">
+        Fresh Donuts & Cinnamon Rolls Made with Love ❤️
     </p>
 
-    <p>📍 Istanbul, Turkey</p>
+    <p>
+
+        📞 <span data-i18n="phone">Phone</span>:
+
+        <a href="tel:+905078312664">
+            +90 507 831 2664
+        </a>
+
+    </p>
+
+    <p data-i18n="location">
+        📍 Istanbul, Turkey
+    </p>
 
     <p>
 
-        <a href="https://www.instagram.com/1sweet_roll/" target="_blank">
+        <a
+            href="https://www.instagram.com/1sweet_roll/"
+            target="_blank"
+            data-i18n="instagram"
+        >
             Instagram
         </a>
 
         |
 
-        <a href="https://chat.whatsapp.com/KsQnQEdY2CLCIJ7m2vyYwK?s=cl&p=a&ilr=4" target="_blank">
+        <a
+            href="https://chat.whatsapp.com/KsQnQEdY2CLCIJ7m2vyYwK?s=cl&p=a&ilr=4"
+            target="_blank"
+            data-i18n="whatsapp"
+        >
             WhatsApp Group
         </a>
 
     </p>
 
-    <p>© 2026 Sweet House. All Rights Reserved.</p>
+    <p>
+        © 2026 Sweet House.
+        <span data-i18n="rights">
+            All Rights Reserved.
+        </span>
+    </p>
 
 </footer>
+
 
 <script src="script.js"></script>
 
