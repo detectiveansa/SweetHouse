@@ -1,108 +1,59 @@
-/* =========================================================
-   SWEET HOUSE
-   MAIN JAVASCRIPT
-   ========================================================= */
-
-
-/* =========================================================
-   ORDER PRODUCT
-   ========================================================= */
-
 function orderProduct(name, price) {
 
-    let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     cart.push({
         name: name,
         price: price
     });
 
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
+
+    localStorage.setItem("cart", JSON.stringify(cart));
 
     updateCartCount();
 
-    showNotification(
-        name + " added to cart!"
-    );
+showNotification(name + " added to cart!");
 }
-
-
-/* =========================================================
-   SEARCH PRODUCTS
-   ========================================================= */
-
 function searchProducts() {
 
-    let searchInput =
-        document.getElementById("searchInput");
-
-    if (!searchInput) {
-        return;
-    }
-
     let input =
-        searchInput.value.toLowerCase();
+        document.getElementById("searchInput").value.toLowerCase();
 
     let products =
         document.getElementsByClassName("product");
 
-    for (let i = 0; i < products.length; i++) {
+    for(let i = 0; i < products.length; i++){
 
         let text =
             products[i].innerText.toLowerCase();
 
-        if (text.includes(input)) {
-
+        if(text.includes(input)){
             products[i].style.display = "block";
-
-        } else {
-
+        }
+        else{
             products[i].style.display = "none";
-
         }
     }
 }
-
-
-/* =========================================================
-   UPDATE CART COUNT
-   ========================================================= */
-
 function updateCartCount() {
 
-    let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    let cartCount =
-        document.getElementById("cart-count");
+    let cartCount = document.getElementById("cart-count");
 
-    if (cartCount) {
-
-        cartCount.innerHTML =
-            "Cart (" + cart.length + ")";
-
+    if(cartCount){
+        cartCount.innerHTML = "Cart (" + cart.length + ")";
     }
 }
 
-
-/* =========================================================
-   LOAD CHECKOUT
-   ========================================================= */
-
+updateCartCount();
+javascript
 function loadCheckout() {
 
-    let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    let checkoutItems =
-        document.getElementById("checkout-items");
-
-    let total =
-        document.getElementById("total");
+    let checkoutItems = document.getElementById("checkout-items");
+    let total = document.getElementById("total");
 
     if (!checkoutItems || !total) {
         return;
@@ -114,15 +65,7 @@ function loadCheckout() {
 
     cart.forEach(function(item) {
 
-        let price =
-            Number(item.price) || 0;
-
-        let quantity =
-            Number(item.quantity) || 1;
-
-        let itemTotal =
-            Number(item.total) ||
-            (price * quantity);
+        let itemTotal = item.total || (item.price * item.quantity);
 
         checkoutItems.innerHTML += `
 
@@ -130,25 +73,13 @@ function loadCheckout() {
 
                 <h3>${item.name}</h3>
 
-                <p>
-                    <strong>Flavor:</strong>
-                    ${item.flavor || "Default"}
-                </p>
+                <p><strong>Flavor:</strong> ${item.flavor}</p>
 
-                <p>
-                    <strong>Quantity:</strong>
-                    ${quantity}
-                </p>
+                <p><strong>Quantity:</strong> ${item.quantity}</p>
 
-                <p>
-                    <strong>Price:</strong>
-                    ${price} TL
-                </p>
+                <p><strong>Price:</strong> ${item.price} TL</p>
 
-                <p>
-                    <strong>Total:</strong>
-                    ${itemTotal} TL
-                </p>
+                <p><strong>Total:</strong> ${itemTotal} TL</p>
 
             </div>
 
@@ -160,448 +91,231 @@ function loadCheckout() {
 
     });
 
-    total.innerHTML =
-        "<h2>Grand Total: " +
-        grandTotal +
-        " TL</h2>";
+    total.innerHTML = "<h2>Grand Total: " + grandTotal + " TL</h2>";
 }
 
-
-/* =========================================================
-   CONFIRM ORDER
-   ========================================================= */
-
+javascript
 function confirmOrder() {
 
-    let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    if (cart.length === 0) {
-
+    if(cart.length === 0){
         alert("Your cart is empty!");
-
         return;
     }
 
-    let message =
-        "🍩 *New Order - Sweet House*%0A%0A";
+    let message = "🍩 *New Order - Sweet House*%0A%0A";
 
     let grandTotal = 0;
 
-    cart.forEach(function(item) {
+    cart.forEach(function(item){
 
-        let price =
-            Number(item.price) || 0;
-
-        let quantity =
-            Number(item.quantity) || 1;
-
-        let itemTotal =
-            Number(item.total) ||
-            (price * quantity);
+        let itemTotal = item.total || (item.price * item.quantity);
 
         grandTotal += itemTotal;
 
         message +=
-            item.name +
-            "%0A" +
-
-            "Flavor: " +
-            (item.flavor || "Default") +
-            "%0A" +
-
-            "Quantity: " +
-            quantity +
-            "%0A" +
-
-            "Total: " +
-            itemTotal +
-            " TL%0A%0A";
+        item.name + "%0A" +
+        "Flavor: " + item.flavor + "%0A" +
+        "Quantity: " + item.quantity + "%0A" +
+        "Total: " + itemTotal + " TL%0A%0A";
 
     });
 
     message +=
-        "------------------------%0A";
+    "------------------------%0A";
 
     message +=
-        "Grand Total: " +
-        grandTotal +
-        " TL";
+    "Grand Total: " + grandTotal + " TL";
 
     window.open(
-        "https://wa.me/905078312664?text=" +
-        message,
+        "https://wa.me/905078312664?text=" + message,
         "_blank"
     );
 
     localStorage.removeItem("cart");
 
     updateCartCount();
+
 }
 
 
-/* =========================================================
-   ADD CUSTOMIZED PRODUCT
-   ========================================================= */
-
+loadCheckout();
 function addCustomizedProduct() {
 
-    let title =
-        document.querySelector("h1");
+    let name = document.querySelector("h1").innerText;
 
-    let priceElement =
-        document.querySelector("h2");
+    let price = parseInt(
+        document.querySelector("h2").innerText.replace(/\D/g, "")
+    );
 
-    let flavorElement =
-        document.getElementById("flavor");
+    let flavor = document.getElementById("flavor").value;
 
-    let quantityElement =
-        document.getElementById("quantity");
+    let quantity = parseInt(
+        document.getElementById("quantity").value
+    );
 
-    if (
-        !title ||
-        !priceElement ||
-        !flavorElement ||
-        !quantityElement
-    ) {
-
-        return;
-    }
-
-    let name =
-        title.innerText;
-
-    let price =
-        parseInt(
-            priceElement.innerText.replace(/\D/g, "")
-        );
-
-    let flavor =
-        flavorElement.value;
-
-    let quantity =
-        parseInt(quantityElement.value);
-
-    if (!quantity || quantity < 1) {
-
-        quantity = 1;
-    }
-
-    let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     cart.push({
-
         name: name,
-
         flavor: flavor,
-
         quantity: quantity,
-
         price: price,
-
         total: price * quantity
-
     });
 
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
+    localStorage.setItem("cart", JSON.stringify(cart));
 
     updateCartCount();
 
-    showNotification(
-        name + " added to cart!"
-    );
+showNotification(name + " added to cart!");
 }
+function showNotification(message){
 
+    let notification = document.getElementById("notification");
 
-/* =========================================================
-   NOTIFICATION
-   ========================================================= */
+    if(!notification){
 
-function showNotification(message) {
+        notification = document.createElement("div");
 
-    let notification =
-        document.getElementById("notification");
+        notification.id = "notification";
 
-    if (!notification) {
+        document.body.appendChild(notification);
 
-        notification =
-            document.createElement("div");
-
-        notification.id =
-            "notification";
-
-        document.body.appendChild(
-            notification
-        );
     }
 
-    notification.innerHTML =
-        "✅ " + message;
+    notification.innerHTML = "✅ " + message;
 
     notification.classList.add("show");
 
-    setTimeout(function() {
+    setTimeout(function(){
 
         notification.classList.remove("show");
 
-    }, 2000);
+    },2000);
+
 }
-
-
-/* =========================================================
-   LANGUAGE SYSTEM
-   ========================================================= */
+/* ================= LANGUAGE SYSTEM ================= */
 
 const translations = {
 
-    /* ================= ENGLISH ================= */
-
     en: {
-
-        chooseLanguage:
-            "Choose Your Language",
-
-        home:
-            "Home",
-
-        products:
-            "Products",
-
-        contact:
-            "Contact",
-
-        about:
-            "About",
-
-        freshProducts:
-            "Fresh Donuts & Cinnamon Rolls",
-
-        madeWithLove:
-            "Made daily with love ❤️",
-
-        bestSellers:
-            "Our Best Sellers",
-
-        orderNow:
-            "Order Now",
-
-        phone:
-            "Phone",
-
-        location:
-            "📍 Istanbul, Turkey",
-
-        instagram:
-            "Instagram",
-
-        whatsapp:
-            "WhatsApp Group",
-
-        footerText:
-            "Fresh Donuts & Cinnamon Rolls Made with Love ❤️",
-
-        rights:
-            "All Rights Reserved."
-
+        chooseLanguage: "Choose Your Language",
+        home: "Home",
+        products: "Products",
+        contact: "Contact",
+        about: "About",
+        freshProducts: "Fresh Donuts & Cinnamon Rolls",
+        madeWithLove: "Made daily with love ❤️",
+        bestSellers: "Our Best Sellers",
+        orderNow: "Order Now",
+        phone: "Phone",
+        location: "📍 Istanbul, Turkey",
+        instagram: "Instagram",
+        whatsapp: "WhatsApp Group",
+        footerText: "Fresh Donuts & Cinnamon Rolls Made with Love ❤️",
+        rights: "All Rights Reserved."
     },
-
-
-    /* ================= ARABIC ================= */
 
     ar: {
-
-        chooseLanguage:
-            "اختر لغتك",
-
-        home:
-            "الرئيسية",
-
-        products:
-            "المنتجات",
-
-        contact:
-            "تواصل معنا",
-
-        about:
-            "من نحن",
-
-        freshProducts:
-            "دونات طازجة ولفائف القرفة",
-
-        madeWithLove:
-            "نُحضّرها يوميًا بكل حب ❤️",
-
-        bestSellers:
-            "الأكثر مبيعًا",
-
-        orderNow:
-            "اطلب الآن",
-
-        phone:
-            "الهاتف",
-
-        location:
-            "📍 إسطنبول، تركيا",
-
-        instagram:
-            "إنستغرام",
-
-        whatsapp:
-            "مجموعة واتساب",
-
-        footerText:
-            "دونات طازجة ولفائف القرفة مصنوعة بكل حب ❤️",
-
-        rights:
-            "جميع الحقوق محفوظة."
-
+        chooseLanguage: "اختر لغتك",
+        home: "الرئيسية",
+        products: "المنتجات",
+        contact: "تواصل معنا",
+        about: "من نحن",
+        freshProducts: "دونات طازجة ولفائف القرفة",
+        madeWithLove: "نُحضّرها يوميًا بكل حب ❤️",
+        bestSellers: "الأكثر مبيعًا",
+        orderNow: "اطلب الآن",
+        phone: "الهاتف",
+        location: "📍 إسطنبول، تركيا",
+        instagram: "إنستغرام",
+        whatsapp: "مجموعة واتساب",
+        footerText: "دونات طازجة ولفائف القرفة مصنوعة بكل حب ❤️",
+        rights: "جميع الحقوق محفوظة."
     },
 
-
-    /* ================= TURKISH ================= */
-
     tr: {
-
-        chooseLanguage:
-            "Dil Seçin",
-
-        home:
-            "Ana Sayfa",
-
-        products:
-            "Ürünler",
-
-        contact:
-            "İletişim",
-
-        about:
-            "Hakkımızda",
-
-        freshProducts:
-            "Taze Donutlar ve Tarçınlı Rulolar",
-
-        madeWithLove:
-            "Her gün sevgiyle hazırlanır ❤️",
-
-        bestSellers:
-            "En Çok Satanlar",
-
-        orderNow:
-            "Sipariş Ver",
-
-        phone:
-            "Telefon",
-
-        location:
-            "📍 İstanbul, Türkiye",
-
-        instagram:
-            "Instagram",
-
-        whatsapp:
-            "WhatsApp Grubu",
-
-        footerText:
-            "Taze Donutlar ve Tarçınlı Rulolar Sevgiyle Hazırlanır ❤️",
-
-        rights:
-            "Tüm Hakları Saklıdır."
-
+        chooseLanguage: "Dil Seçin",
+        home: "Ana Sayfa",
+        products: "Ürünler",
+        contact: "İletişim",
+        about: "Hakkımızda",
+        freshProducts: "Taze Donutlar ve Tarçınlı Rulolar",
+        madeWithLove: "Her gün sevgiyle hazırlanır ❤️",
+        bestSellers: "En Çok Satanlar",
+        orderNow: "Sipariş Ver",
+        phone: "Telefon",
+        location: "📍 İstanbul, Türkiye",
+        instagram: "Instagram",
+        whatsapp: "WhatsApp Grubu",
+        footerText: "Taze Donutlar ve Tarçınlı Rulolar Sevgiyle Hazırlanır ❤️",
+        rights: "Tüm Hakları Saklıdır."
     }
 
 };
 
 
-/* =========================================================
-   APPLY LANGUAGE
-   ========================================================= */
-
 function applyLanguage(language) {
 
-    let selectedLanguage =
-        translations[language];
+    const selectedLanguage = translations[language];
 
     if (!selectedLanguage) {
-
-        language = "en";
-
-        selectedLanguage =
-            translations.en;
+        return;
     }
 
 
-    /* Translate all elements */
+    /* Translate elements */
 
-    document
-        .querySelectorAll("[data-i18n]")
-        .forEach(function(element) {
+    document.querySelectorAll("[data-i18n]").forEach(function(element) {
 
-            let key =
-                element.getAttribute("data-i18n");
+        const key = element.getAttribute("data-i18n");
 
-            if (
-                selectedLanguage[key] !== undefined
-            ) {
+        if (selectedLanguage[key]) {
 
-                element.textContent =
-                    selectedLanguage[key];
+            element.textContent = selectedLanguage[key];
 
-            }
+        }
 
-        });
+    });
 
 
-    /* Arabic RTL */
+    /* Arabic direction */
 
     if (language === "ar") {
 
-        document.documentElement.lang =
-            "ar";
-
-        document.documentElement.dir =
-            "rtl";
+        document.documentElement.lang = "ar";
+        document.documentElement.dir = "rtl";
 
     } else {
 
-        document.documentElement.lang =
-            language;
-
-        document.documentElement.dir =
-            "ltr";
+        document.documentElement.lang = language;
+        document.documentElement.dir = "ltr";
 
     }
 
 
-    /* Save selected language */
+    /* Save language */
 
-    localStorage.setItem(
-        "language",
-        language
-    );
+    localStorage.setItem("language", language);
 
 
     /* Hide language screen */
 
-    let languageScreen =
-        document.getElementById(
-            "language-screen"
-        );
+    const languageScreen =
+        document.getElementById("language-screen");
 
     if (languageScreen) {
 
-        languageScreen.style.display =
-            "none";
+        languageScreen.style.display = "none";
+
     }
+
 }
 
 
-/* =========================================================
-   SELECT LANGUAGE
-   ========================================================= */
+/* Select language */
 
 function selectLanguage(language) {
 
@@ -610,73 +324,14 @@ function selectLanguage(language) {
 }
 
 
-/* =========================================================
-   LOAD SAVED LANGUAGE
-   ========================================================= */
+/* Load saved language */
 
-function loadSavedLanguage() {
-
-    let savedLanguage =
-        localStorage.getItem("language");
-
-    let languageScreen =
-        document.getElementById(
-            "language-screen"
-        );
+const savedLanguage =
+    localStorage.getItem("language");
 
 
-    if (savedLanguage) {
+if (savedLanguage) {
 
-        applyLanguage(
-            savedLanguage
-        );
+    applyLanguage(savedLanguage);
 
-    } else {
-
-        if (languageScreen) {
-
-            languageScreen.style.display =
-                "flex";
-        }
-    }
 }
-
-
-/* =========================================================
-   MAKE FUNCTIONS AVAILABLE TO HTML
-   ========================================================= */
-
-window.orderProduct =
-    orderProduct;
-
-window.searchProducts =
-    searchProducts;
-
-window.updateCartCount =
-    updateCartCount;
-
-window.loadCheckout =
-    loadCheckout;
-
-window.confirmOrder =
-    confirmOrder;
-
-window.addCustomizedProduct =
-    addCustomizedProduct;
-
-window.showNotification =
-    showNotification;
-
-window.selectLanguage =
-    selectLanguage;
-
-
-/* =========================================================
-   START SCRIPT
-   ========================================================= */
-
-updateCartCount();
-
-loadCheckout();
-
-loadSavedLanguage();
