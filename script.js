@@ -1,30 +1,11 @@
 /* =========================================================
-   SWEET HOUSE - MAIN SCRIPT
+   SWEET HOUSE
+   MAIN JAVASCRIPT
    ========================================================= */
 
 
 /* =========================================================
-   CART
-   ========================================================= */
-
-function updateCartCount() {
-
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    let cartCount = document.getElementById("cart-count");
-
-    if (cartCount) {
-
-        cartCount.innerHTML =
-            "Cart (" + cart.length + ")";
-
-    }
-
-}
-
-
-/* =========================================================
-   OLD ORDER FUNCTION
+   ORDER PRODUCT
    ========================================================= */
 
 function orderProduct(name, price) {
@@ -33,11 +14,8 @@ function orderProduct(name, price) {
         JSON.parse(localStorage.getItem("cart")) || [];
 
     cart.push({
-
         name: name,
-
         price: price
-
     });
 
     localStorage.setItem(
@@ -50,7 +28,6 @@ function orderProduct(name, price) {
     showNotification(
         name + " added to cart!"
     );
-
 }
 
 
@@ -73,11 +50,7 @@ function searchProducts() {
     let products =
         document.getElementsByClassName("product");
 
-    for (
-        let i = 0;
-        i < products.length;
-        i++
-    ) {
+    for (let i = 0; i < products.length; i++) {
 
         let text =
             products[i].innerText.toLowerCase();
@@ -91,14 +64,33 @@ function searchProducts() {
             products[i].style.display = "none";
 
         }
-
     }
-
 }
 
 
 /* =========================================================
-   CHECKOUT
+   UPDATE CART COUNT
+   ========================================================= */
+
+function updateCartCount() {
+
+    let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+    let cartCount =
+        document.getElementById("cart-count");
+
+    if (cartCount) {
+
+        cartCount.innerHTML =
+            "Cart (" + cart.length + ")";
+
+    }
+}
+
+
+/* =========================================================
+   LOAD CHECKOUT
    ========================================================= */
 
 function loadCheckout() {
@@ -172,7 +164,6 @@ function loadCheckout() {
         "<h2>Grand Total: " +
         grandTotal +
         " TL</h2>";
-
 }
 
 
@@ -190,7 +181,6 @@ function confirmOrder() {
         alert("Your cart is empty!");
 
         return;
-
     }
 
     let message =
@@ -238,18 +228,15 @@ function confirmOrder() {
         grandTotal +
         " TL";
 
-
     window.open(
-        "https://wa.me/905069294075?text=" +
+        "https://wa.me/905078312664?text=" +
         message,
         "_blank"
     );
 
-
     localStorage.removeItem("cart");
 
     updateCartCount();
-
 }
 
 
@@ -271,7 +258,6 @@ function addCustomizedProduct() {
     let quantityElement =
         document.getElementById("quantity");
 
-
     if (
         !title ||
         !priceElement ||
@@ -280,41 +266,29 @@ function addCustomizedProduct() {
     ) {
 
         return;
-
     }
-
 
     let name =
         title.innerText;
 
-
     let price =
         parseInt(
-            priceElement.innerText
-                .replace(/\D/g, "")
+            priceElement.innerText.replace(/\D/g, "")
         );
-
 
     let flavor =
         flavorElement.value;
 
-
     let quantity =
-        parseInt(
-            quantityElement.value
-        );
-
+        parseInt(quantityElement.value);
 
     if (!quantity || quantity < 1) {
 
         quantity = 1;
-
     }
-
 
     let cart =
         JSON.parse(localStorage.getItem("cart")) || [];
-
 
     cart.push({
 
@@ -330,20 +304,16 @@ function addCustomizedProduct() {
 
     });
 
-
     localStorage.setItem(
         "cart",
         JSON.stringify(cart)
     );
 
-
     updateCartCount();
-
 
     showNotification(
         name + " added to cart!"
     );
-
 }
 
 
@@ -356,7 +326,6 @@ function showNotification(message) {
     let notification =
         document.getElementById("notification");
 
-
     if (!notification) {
 
         notification =
@@ -368,27 +337,18 @@ function showNotification(message) {
         document.body.appendChild(
             notification
         );
-
     }
-
 
     notification.innerHTML =
         "✅ " + message;
 
-
-    notification.classList.add(
-        "show"
-    );
-
+    notification.classList.add("show");
 
     setTimeout(function() {
 
-        notification.classList.remove(
-            "show"
-        );
+        notification.classList.remove("show");
 
     }, 2000);
-
 }
 
 
@@ -397,6 +357,8 @@ function showNotification(message) {
    ========================================================= */
 
 const translations = {
+
+    /* ================= ENGLISH ================= */
 
     en: {
 
@@ -448,6 +410,8 @@ const translations = {
     },
 
 
+    /* ================= ARABIC ================= */
+
     ar: {
 
         chooseLanguage:
@@ -497,6 +461,8 @@ const translations = {
 
     },
 
+
+    /* ================= TURKISH ================= */
 
     tr: {
 
@@ -559,32 +525,26 @@ function applyLanguage(language) {
     let selectedLanguage =
         translations[language];
 
-
     if (!selectedLanguage) {
 
         language = "en";
 
         selectedLanguage =
             translations.en;
-
     }
 
 
-    /* Translate elements */
+    /* Translate all elements */
 
     document
         .querySelectorAll("[data-i18n]")
         .forEach(function(element) {
 
             let key =
-                element.getAttribute(
-                    "data-i18n"
-                );
-
+                element.getAttribute("data-i18n");
 
             if (
-                selectedLanguage[key] !==
-                undefined
+                selectedLanguage[key] !== undefined
             ) {
 
                 element.textContent =
@@ -595,7 +555,7 @@ function applyLanguage(language) {
         });
 
 
-    /* Page direction */
+    /* Arabic RTL */
 
     if (language === "ar") {
 
@@ -616,7 +576,7 @@ function applyLanguage(language) {
     }
 
 
-    /* Save language */
+    /* Save selected language */
 
     localStorage.setItem(
         "language",
@@ -631,14 +591,11 @@ function applyLanguage(language) {
             "language-screen"
         );
 
-
     if (languageScreen) {
 
         languageScreen.style.display =
             "none";
-
     }
-
 }
 
 
@@ -660,10 +617,7 @@ function selectLanguage(language) {
 function loadSavedLanguage() {
 
     let savedLanguage =
-        localStorage.getItem(
-            "language"
-        );
-
+        localStorage.getItem("language");
 
     let languageScreen =
         document.getElementById(
@@ -683,11 +637,8 @@ function loadSavedLanguage() {
 
             languageScreen.style.display =
                 "flex";
-
         }
-
     }
-
 }
 
 
@@ -721,7 +672,7 @@ window.selectLanguage =
 
 
 /* =========================================================
-   START
+   START SCRIPT
    ========================================================= */
 
 updateCartCount();
