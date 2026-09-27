@@ -196,3 +196,142 @@ function showNotification(message){
     },2000);
 
 }
+/* ================= LANGUAGE SYSTEM ================= */
+
+const translations = {
+
+    en: {
+        chooseLanguage: "Choose Your Language",
+        home: "Home",
+        products: "Products",
+        contact: "Contact",
+        about: "About",
+        freshProducts: "Fresh Donuts & Cinnamon Rolls",
+        madeWithLove: "Made daily with love ❤️",
+        bestSellers: "Our Best Sellers",
+        orderNow: "Order Now",
+        phone: "Phone",
+        location: "📍 Istanbul, Turkey",
+        instagram: "Instagram",
+        whatsapp: "WhatsApp Group",
+        footerText: "Fresh Donuts & Cinnamon Rolls Made with Love ❤️",
+        rights: "All Rights Reserved."
+    },
+
+    ar: {
+        chooseLanguage: "اختر لغتك",
+        home: "الرئيسية",
+        products: "المنتجات",
+        contact: "تواصل معنا",
+        about: "من نحن",
+        freshProducts: "دونات طازجة ولفائف القرفة",
+        madeWithLove: "نُحضّرها يوميًا بكل حب ❤️",
+        bestSellers: "الأكثر مبيعًا",
+        orderNow: "اطلب الآن",
+        phone: "الهاتف",
+        location: "📍 إسطنبول، تركيا",
+        instagram: "إنستغرام",
+        whatsapp: "مجموعة واتساب",
+        footerText: "دونات طازجة ولفائف القرفة مصنوعة بكل حب ❤️",
+        rights: "جميع الحقوق محفوظة."
+    },
+
+    tr: {
+        chooseLanguage: "Dil Seçin",
+        home: "Ana Sayfa",
+        products: "Ürünler",
+        contact: "İletişim",
+        about: "Hakkımızda",
+        freshProducts: "Taze Donutlar ve Tarçınlı Rulolar",
+        madeWithLove: "Her gün sevgiyle hazırlanır ❤️",
+        bestSellers: "En Çok Satanlar",
+        orderNow: "Sipariş Ver",
+        phone: "Telefon",
+        location: "📍 İstanbul, Türkiye",
+        instagram: "Instagram",
+        whatsapp: "WhatsApp Grubu",
+        footerText: "Taze Donutlar ve Tarçınlı Rulolar Sevgiyle Hazırlanır ❤️",
+        rights: "Tüm Hakları Saklıdır."
+    }
+
+};
+
+
+function applyLanguage(language) {
+
+    const selectedLanguage = translations[language];
+
+    if (!selectedLanguage) {
+        return;
+    }
+
+
+    /* Translate elements */
+
+    document.querySelectorAll("[data-i18n]").forEach(function(element) {
+
+        const key = element.getAttribute("data-i18n");
+
+        if (selectedLanguage[key]) {
+
+            element.textContent = selectedLanguage[key];
+
+        }
+
+    });
+
+
+    /* Arabic direction */
+
+    if (language === "ar") {
+
+        document.documentElement.lang = "ar";
+        document.documentElement.dir = "rtl";
+
+    } else {
+
+        document.documentElement.lang = language;
+        document.documentElement.dir = "ltr";
+
+    }
+
+
+    /* Save language */
+
+    localStorage.setItem("language", language);
+
+
+    /* Hide language screen */
+
+    const languageScreen =
+        document.getElementById("language-screen");
+
+    if (languageScreen) {
+
+        languageScreen.style.display = "none";
+
+    }
+
+}
+
+
+/* Select language */
+
+function selectLanguage(language) {
+
+    applyLanguage(language);
+
+}
+
+
+/* Load saved language */
+
+const savedLanguage =
+    localStorage.getItem("language");
+
+
+if (savedLanguage) {
+
+    applyLanguage(savedLanguage);
+
+}
